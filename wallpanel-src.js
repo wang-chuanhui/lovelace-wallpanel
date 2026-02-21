@@ -2112,7 +2112,7 @@ function initWallpanel() {
 
 			this.infoBoxPosY = document.createElement("div");
 			this.infoBoxPosY.id = "wallpanel-screensaver-info-box-pos-y";
-			this.infoBoxPosX.y = "0";
+			this.infoBoxPosY.y = "0";
 
 			this.infoBox = document.createElement("div");
 			this.infoBox.id = "wallpanel-screensaver-info-box";
