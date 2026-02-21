@@ -212,7 +212,11 @@ const classStyles = {
 const mediaInfoCache = new Map();
 
 function addToMediaInfoCache(mediaUrl, value) {
-	while (mediaInfoCache.size >= config.media_list_max_size) {
+	const maxSize = Number(config.media_list_max_size);
+	if (!Number.isFinite(maxSize) || maxSize <= 0) {
+		return;
+	}
+	while (mediaInfoCache.size >= maxSize) {
 		// Remove the oldest key (first inserted)
 		const oldestKey = mediaInfoCache.keys().next().value;
 		mediaInfoCache.delete(oldestKey);
