@@ -1316,6 +1316,9 @@ function initWallpanel() {
 			if (!activeElement || !activeElement.mediaUrl) return;
 			// Maximum length for input_text entity is 255
 			const mediaUrl = activeElement.mediaUrl.substring(0, 255);
+			if (activeElement._lastImageURLEntityValue === mediaUrl) {
+				return;
+			}
 
 			logger.debug("Updating image_url_entity", image_url_entity, mediaUrl);
 			this.__hass
@@ -1326,6 +1329,7 @@ function initWallpanel() {
 				.then(
 					(result) => {
 						logger.debug(result);
+						activeElement._lastImageURLEntityValue = mediaUrl;
 					},
 					(error) => {
 						logger.error("Failed to set image url entity state:", error);
