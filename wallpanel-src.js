@@ -2642,6 +2642,7 @@ function initWallpanel() {
 
 		async updateMediaList(callback = null, force = false, retryCount = 0) {
 			if (!config.image_url) return;
+			if (this.updatingMediaList) return;
 			if (!force) {
 				if (new Date().getTime() - this.lastMediaListUpdate < config.media_list_update_interval * 1000) {
 					return;
