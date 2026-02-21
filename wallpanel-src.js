@@ -1149,6 +1149,7 @@ function initWallpanel() {
 			this.screensaverStopNavigationPathTimeout = null;
 			this.disable_screensaver_on_browser_mod_popup_function = null;
 			this.moreInfoDialogOpenedAt = 0;
+			this.timerInterval = null;
 
 			this.screenWakeLock = new ScreenWakeLock();
 			this.cameraMotionDetection = new CameraMotionDetection();
@@ -1160,7 +1161,7 @@ function initWallpanel() {
 			this.__views = [];
 
 			elHass.provideHass(this);
-			setInterval(this.timer.bind(this), 1000);
+			this.timerInterval = setInterval(this.timer.bind(this), 1000);
 
 			wallpanelContainer.hass = this.__hass;
 		}
@@ -2201,6 +2202,13 @@ function initWallpanel() {
 
 			// Correct possibly incorrect entity state
 			this.setScreensaverEntityState();
+		}
+
+		disconnectedCallback() {
+			if (this.timerInterval) {
+				clearInterval(this.timerInterval);
+				this.timerInterval = null;
+			}
 		}
 
 		reconfigure(oldConfig) {
