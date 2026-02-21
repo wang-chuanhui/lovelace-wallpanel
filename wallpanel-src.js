@@ -1962,9 +1962,12 @@ function initWallpanel() {
 				mediaElement.pause();
 			}
 			if (mediaElement.tagName.toLowerCase() == "ha-camera-stream") {
-				const video = getHaCameraStreamPlayerAndVideo(mediaElement)[1];
+				const [player, video] = getHaCameraStreamPlayerAndVideo(mediaElement);
 				if (video) {
 					video.pause();
+				}
+				if (player && typeof player.stop === "function") {
+					player.stop();
 				}
 			}
 			mediaType = mediaType.toLowerCase();
