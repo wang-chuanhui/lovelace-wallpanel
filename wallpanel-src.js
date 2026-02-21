@@ -63,7 +63,7 @@ const defaultConfig = {
 	immich_resolution: "preview",
 	image_fit_landscape: "cover", // cover / contain
 	image_fit_portrait: "contain", // cover / contain
-	caclulate_media_size: true,
+	calculate_media_size: true,
 	media_horizontal_align: "center", // left / center / right
 	media_vertical_align: "middle", // top / middle  / bottom
 	media_list_update_interval: 3600,
@@ -122,7 +122,8 @@ const renamedConfigOptions = {
 	image_list_update_interval: "media_list_update_interval",
 	screensaver_stop_navigation_path: "screensaver_start_navigation_path",
 	card_interaction: "content_interaction",
-	immich_api_key: "immich_api_keys"
+	immich_api_key: "immich_api_keys",
+	caclulate_media_size: "calculate_media_size"
 };
 
 let dashboardConfig = {};
@@ -3376,7 +3377,7 @@ function initWallpanel() {
 		}
 
 		setMediaDimensions() {
-			if (!config.caclulate_media_size) {
+			if (!config.calculate_media_size) {
 				return;
 			}
 			const activeElem = this.getActiveMediaElement();
