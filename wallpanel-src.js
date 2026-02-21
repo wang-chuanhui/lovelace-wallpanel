@@ -2635,7 +2635,7 @@ function initWallpanel() {
 			}
 
 			infoElements.forEach((infoElement) => {
-				infoElement.innerHTML = html;
+				infoElement.textContent = html;
 				infoElement.style.display = "block";
 			});
 		}
