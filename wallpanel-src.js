@@ -4086,7 +4086,11 @@ function initWallpanel() {
 				}
 				this.debugBox.scrollTop = this.debugBox.scrollHeight;
 			}
-			if (this.screenWakeLock.enabled && now - this.screensaverStartedAt >= config.keep_screen_on_time * 1000) {
+			if (
+				this.screenWakeLock.enabled &&
+				config.keep_screen_on_time > 0 &&
+				now - this.screensaverStartedAt >= config.keep_screen_on_time * 1000
+			) {
 				logger.info(`Disable wake lock after ${config.keep_screen_on_time} seconds`);
 				this.screenWakeLock.disable();
 			}
