@@ -3659,12 +3659,12 @@ function initWallpanel() {
 
 			const titleDiv = document.createElement("div");
 			titleDiv.className = "wallpanel-message-title";
-			titleDiv.innerHTML = title;
+			titleDiv.textContent = title;
 			message.appendChild(titleDiv);
 
 			const textDiv = document.createElement("div");
 			textDiv.className = "wallpanel-message-text";
-			textDiv.innerHTML = text;
+			textDiv.textContent = text;
 			message.appendChild(textDiv);
 
 			this.messageContainer.appendChild(message);
