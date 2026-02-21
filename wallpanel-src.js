@@ -384,6 +384,7 @@ class ScreenWakeLock {
 		this._lock = null;
 		this._player = null;
 		this._isPlaying = false;
+		this._onWakeLockRelease = null;
 
 		const handleVisibilityChange = () => {
 			logger.debug("handleVisibilityChange");
@@ -433,6 +434,12 @@ class ScreenWakeLock {
 				.then((wakeLock) => {
 					logger.debug("Request screen wakelock successful");
 					this._lock = wakeLock;
+					this._onWakeLockRelease = () => {
+						logger.debug("Screen wakelock released");
+						this.enabled = false;
+						this._lock = null;
+					};
+					wakeLock.addEventListener("release", this._onWakeLockRelease);
 					this.enabled = true;
 					this.error = null;
 				})
