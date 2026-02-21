@@ -436,7 +436,7 @@ class ScreenWakeLock {
 				});
 		} else {
 			logger.debug("Starting video player");
-			if (!this._player.paused && this._player._isPlaying) {
+			if (!this._player.paused && this._isPlaying) {
 				this._player.pause();
 			}
 			const playPromise = this._player.play();
@@ -465,7 +465,7 @@ class ScreenWakeLock {
 			this._lock = null;
 		} else {
 			logger.debug("Stopping video player");
-			if (!this._player.paused && this._player._isPlaying) {
+			if (!this._player.paused && this._isPlaying) {
 				this._player.pause();
 			}
 		}
