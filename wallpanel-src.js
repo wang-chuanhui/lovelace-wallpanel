@@ -686,7 +686,7 @@ function mergeConfig(target, ...sources) {
 				}
 				function processValue(val) {
 					if (typeof val === "string" || val instanceof String) {
-						val = val.replace("${browser_id}", browserId ? browserId : "browser-id-unset");
+						val = val.replace(/\$\{browser_id\}/g, browserId ? browserId : "browser-id-unset");
 						val = val.replace(/\$\{entity:\s*([^}]+\.[^}]+)\}/g, replacer);
 					}
 					if (typeof target[key] === "boolean") {
