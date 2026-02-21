@@ -226,7 +226,7 @@ let elHass = null;
 let elHaMain = null;
 let browserId = null;
 let userId = null;
-const userName = null;
+let userName = null;
 let userDisplayname = null;
 
 function isObject(item) {
@@ -4318,8 +4318,10 @@ function waitForEnv(callback, startTime = null) {
 }
 
 function startup() {
-	userId = (elHass.hass || elHass.__hass).user.id;
-	userDisplayname = (elHass.hass || elHass.__hass).user.name;
+	const hassUser = (elHass.hass || elHass.__hass).user;
+	userId = hassUser.id;
+	userName = hassUser.username || null;
+	userDisplayname = hassUser.name;
 	logger.debug(`userId: ${userId}, userName: ${userName}, userDisplayname: ${userDisplayname}`);
 
 	updateConfig();
