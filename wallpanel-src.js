@@ -599,7 +599,12 @@ class CameraMotionDetection {
 			})
 			.then((stream) => {
 				this.videoElement.srcObject = stream;
-				this.videoElement.play();
+				const playPromise = this.videoElement.play();
+				if (playPromise) {
+					playPromise.catch((error) => {
+						logger.warning(`Camera motion detection video play failed: ${error}`);
+					});
+				}
 				if (this.enabled) {
 					this.captureTimer = setInterval(this.capture.bind(this), this.captureInterval);
 				}
