@@ -312,7 +312,10 @@ const logger = {
 		el.href = url;
 		el.target = "_blank";
 		el.download = "wallpanel_log.txt";
+		document.body.appendChild(el);
 		el.click();
+		el.remove();
+		setTimeout(() => URL.revokeObjectURL(url), 0);
 	},
 	purgeMessages: function () {
 		logger.messages = [];
