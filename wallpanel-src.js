@@ -4064,7 +4064,7 @@ function initWallpanel() {
 			if (swipe) {
 				switchMedia = swipe == "left" ? "forwards" : "backwards";
 				evt.stopImmediatePropagation();
-			} else if (evt instanceof MouseEvent || evt instanceof TouchEvent) {
+			} else if (evt instanceof MouseEvent || ("TouchEvent" in window && evt instanceof TouchEvent)) {
 				let right = 0.0;
 				let bottom = 0.0;
 				const pos = this.screensaverContainer.getBoundingClientRect();
