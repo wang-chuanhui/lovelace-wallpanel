@@ -615,9 +615,13 @@ class CameraMotionDetection {
 			this.captureTimer = null;
 		}
 		this.videoElement.pause();
-		this.videoElement.srcObject.getTracks().forEach((track) => {
-			track.stop();
-		});
+		const stream = this.videoElement.srcObject;
+		if (stream && typeof stream.getTracks === "function") {
+			stream.getTracks().forEach((track) => {
+				track.stop();
+			});
+		}
+		this.videoElement.srcObject = null;
 	}
 }
 
