@@ -920,7 +920,7 @@ function getActiveBrowserModPopups() {
 		if (
 			el.tagName.toLowerCase().startsWith("browser-mod-popup") &&
 			el.shadowRoot &&
-			el.shadowRoot.children.length > 0
+			el.shadowRoot.querySelector("ha-dialog")
 		) {
 			popups.push(el);
 		}
