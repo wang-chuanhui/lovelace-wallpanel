@@ -1527,6 +1527,8 @@ function initWallpanel() {
 			this.infoBox.style.setProperty("--wp-card-margin", "5px");
 			this.infoBox.style.setProperty("--wp-card-backdrop-filter", "none");
 			this.infoBox.style.setProperty("--wp-badges-minwidth", "200px");
+			this.infoBox.style.width = '100%'
+			this.infoBox.style.height = '100%'
 
 			this.infoBoxPosX.style.pointerEvents = "none";
 			this.infoBoxPosX.style.height = "100%";
@@ -1539,7 +1541,13 @@ function initWallpanel() {
 			this.infoBoxContent.style.pointerEvents = "none";
 			this.infoBoxContent.style.width = "fit-content";
 			this.infoBoxContent.style.height = "100%";
-			this.infoBoxContent.style.display = "grid";
+			this.infoBoxContent.style.display = "flex";
+			this.infoBoxContent.style.flexDirection = "row";
+			this.infoBoxContent.style.alignItems = "center";
+			this.infoBoxContent.style.justifyContent = "center";
+			this.infoBoxContent.style.gap = "30px";
+			this.infoBoxContent.style.width = '100%'
+			this.infoBoxContent.style.height = '100%'
 
 			this.fixedInfoContainer.removeAttribute("style");
 			this.fixedInfoContainer.style.position = "fixed";
