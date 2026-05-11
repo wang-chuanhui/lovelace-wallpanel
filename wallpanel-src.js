@@ -1191,7 +1191,7 @@ function initWallpanel() {
 		throw new Error(error);
 	}
 
-	class WallpanelViewContainer extends HuiViewContainer {}
+	class WallpanelViewContainer extends HuiViewContainer { }
 
 	class WallpanelView extends HuiView {
 		constructor() {
@@ -1243,6 +1243,10 @@ function initWallpanel() {
 			wallpanelContainer.hass = this.__hass;
 			window.addEventListener('startScreensaver', () => this.startScreensaver());
 			window.addEventListener('stopScreensaver', () => this.stopScreensaver());
+			window.addEventListener('getIsScreensaverRunning', () => {
+				const event = new CustomEvent('isScreensaverRunning', { bubbles: true, composed: true, cancelable: false, detail: this.screensaverRunning() });
+				window.dispatchEvent(event);
+			});
 		}
 
 		// Whenever the state changes, a new `hass` object is set.
@@ -1761,15 +1765,15 @@ function initWallpanel() {
 			const computed = getComputedStyle(this.infoContainer);
 			const x = [2, 3].includes(this.lastCorner)
 				? this.infoContainer.offsetWidth -
-					parseInt(computed.paddingLeft) -
-					parseInt(computed.paddingRight) -
-					this.infoBox.offsetWidth
+				parseInt(computed.paddingLeft) -
+				parseInt(computed.paddingRight) -
+				this.infoBox.offsetWidth
 				: 0;
 			const y = [1, 2].includes(this.lastCorner)
 				? this.infoContainer.offsetHeight -
-					parseInt(computed.paddingTop) -
-					parseInt(computed.paddingBottom) -
-					this.infoBox.offsetHeight
+				parseInt(computed.paddingTop) -
+				parseInt(computed.paddingBottom) -
+				this.infoBox.offsetHeight
 				: 0;
 			this.moveInfoBox(x, y, fadeDuration);
 		}
@@ -2006,7 +2010,7 @@ function initWallpanel() {
 			);
 			const animation =
 				config.image_animation_ken_burns_animations[
-					Math.floor(Math.random() * config.image_animation_ken_burns_animations.length)
+				Math.floor(Math.random() * config.image_animation_ken_burns_animations.length)
 				];
 			if (this.kenburnsDelayStartTimer) {
 				clearTimeout(this.kenburnsDelayStartTimer);
