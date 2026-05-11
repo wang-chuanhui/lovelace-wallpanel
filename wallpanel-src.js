@@ -1241,6 +1241,8 @@ function initWallpanel() {
 			this.timerInterval = setInterval(this.timer.bind(this), 1000);
 
 			wallpanelContainer.hass = this.__hass;
+			window.addEventListener('startScreensaver', () => this.startScreensaver());
+			window.addEventListener('stopScreensaver', () => this.stopScreensaver());
 		}
 
 		// Whenever the state changes, a new `hass` object is set.
@@ -3938,6 +3940,8 @@ function initWallpanel() {
 					(config.fade_in_time + 1) * 1000
 				);
 			}
+			const event = new CustomEvent('isScreensaverRunning', { bubbles: true, composed: true, cancelable: false, detail: true });
+			window.dispatchEvent(event);
 		}
 
 		screensaverRunning() {
@@ -3977,6 +3981,8 @@ function initWallpanel() {
 			}
 
 			setTimeout(this.setScreensaverEntityState.bind(this), 25);
+			const event = new CustomEvent('isScreensaverRunning', { bubbles: true, composed: true, cancelable: false, detail: false });
+			window.dispatchEvent(event);
 		}
 
 		updateScreensaver() {
