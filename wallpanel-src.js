@@ -4315,7 +4315,7 @@ function initWallpanel() {
 				}
 			}
 
-			if (switchMedia) {
+			if (switchMedia && config.show_images) {
 				if (this.updatingMedia) {
 					logger.debug("Already switching media");
 				} else {
